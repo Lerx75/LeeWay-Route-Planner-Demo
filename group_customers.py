@@ -59,7 +59,11 @@ coords = df_geocoded[["Latitude", "Longitude"]].to_numpy()
 n_calls = len(coords)
 
 # --- OSRM batching for true road distances ---
-osrm_url = "http://localhost:5000"
+import os
+
+# Use an environment variable if set, otherwise fall back to public OSRM
+osrm_url = os.getenv("OSRM_URL", "https://router.project-osrm.org")
+
 def osrm_table_batch(coords, batch_size=100):
     n = len(coords)
     matrix = np.zeros((n, n))
