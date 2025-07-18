@@ -5,11 +5,11 @@ import os
 import io
 import requests
 
-st.title("LeeWay v3.1 — Road Distance Territory Clustering (Greedy)")
+st.title("LeeWay v3.1 — Road Distance Territory call Clustering")
 
 st.markdown("""
 Upload your calls (with postcode), pick min/max calls per day.
-Clusters will be assigned by real-world **road distance** with strict group sizes. Leftovers flagged!
+Clusters will be assigned by real-world **road distance**.
 """)
 
 uploaded = st.file_uploader("Upload Excel (.xlsx) with a postcode column", type="xlsx")
@@ -50,7 +50,7 @@ st.success(f"{len(df_geocoded)} calls geocoded and ready.")
 with st.form("params"):
     min_calls = st.number_input("Min calls per territory", 1, 100, 5)
     max_calls = st.number_input("Max calls per territory", int(min_calls), 100, int(min_calls)+1)
-    run = st.form_submit_button("Cluster by Road Distance (Greedy)")
+    run = st.form_submit_button("Run")
 
 if not run:
     st.stop()
